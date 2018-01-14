@@ -3,9 +3,9 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\Pet as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class Pet extends Authenticatable
+class Pet extends Model
 {
     use Notifiable;
 
@@ -15,7 +15,7 @@ class Pet extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'age' , 
+        'name', 'age', 'user_id', 'training_id'
     ];
 
     /**

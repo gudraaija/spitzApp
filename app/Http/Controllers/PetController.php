@@ -2,26 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Pet;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PetController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
-    use RegistersUsers;
-
     /**
      * Where to redirect users after registration.
      *
@@ -45,11 +31,11 @@ class PetController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(Request $request)
     {
-        return Validator::make($data, [
+        return Validator::make($request, [
             'name' => 'required|string|max:50',
-            'age' => 'required|integer',
+            'age' => 'required|integer'
         ]);
     }
 
@@ -57,14 +43,15 @@ class PetController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Pet
      */
-    protected function create(array $data)
+    public function store(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'age' => $data['username'],
-        ]);
+        $added = Pet::create($request->all());
+        if($added) {
+            $request->session()->flash('status', 'You have successfully registered your pet!');
+        }
+        return redirect()->route('pets');
     }
 
      /**
@@ -74,6 +61,13 @@ class PetController extends Controller
      */
     public function index()
     {
-        return view('pets.index');
+        $pets = Pet::where('user_id', Auth::id())
+                    ->get();
+        return view('pets.index', ['pets' => $pets]);
+    }
+
+    public function add()
+    {
+        return view('pets.add');
     }
 }

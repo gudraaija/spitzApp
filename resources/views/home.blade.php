@@ -16,7 +16,13 @@
 
                     @if (Auth::user()->role == 'Pet owner')
                         <div class="">
-                            <a href="{{ route('pets') }}">Add pet to my profile</a>
+                            <a href="{{ route('pets') }}">My pets</a>
+                        </div>
+                    @endif
+
+                    @if (Auth::user()->role == 'Trainer')
+                        <div class="">
+                            <a href="{{ route('pets') }}">My trainings</a>
                         </div>
                     @endif
 

@@ -17,5 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resource('Pet', 'PetController');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/pets', 'PetController@index')->name('pets');
+Route::get('/pets/add', 'PetController@add')->name('addpet');
+
+//Route::post('/pets/register', 'PetController@create')->name('registerPet');
