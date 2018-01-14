@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">Pets</div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -13,14 +13,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    @if (Auth::user()->role == 'Pet owner')
-                        <div class="">
-                            <a href="{{ route('pets') }}">Add pet to my profile</a>
-                        </div>
-                    @endif
-
-                    You are logged in!
                 </div>
             </div>
         </div>
