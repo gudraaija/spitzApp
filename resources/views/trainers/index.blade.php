@@ -15,16 +15,17 @@
                     @endif
                     <div>
                         <h4>My description:</h4>
-                        
-                        @if ($trainer->description)
-                        <ul>$trainer->description</ul>
+
+                        @foreach ($trainers as $trainer)
+                        @if ($trainer->description == ' ')
                         <ul><a href="{{ route('addDescription') }}">Add a description to my profile</a></ul>
                         @else 
+                        <ul>{{$trainer->description}}</ul>
                         <ul><a href="{{ route('addDescription') }}">Edit my description</a></ul>
                         @endif
-
+                        @endforeach
                         <h4>My trainings:</h4>
-                        <ul><a href="#">Add a training to my profile</a></ul>
+                        <ul><a href="{{ route('addTraining') }}">Add a training to my profile</a></ul>
                     </div>
 
                 </div>

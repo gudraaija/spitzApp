@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Trainer;
+use App\Training;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,7 +50,16 @@ class TrainingController extends Controller
     {
         $added = Trainer::create($request->all());
         if($added) {
-            $request->session()->flash('status', 'You have successfully stored something!');
+            $request->session()->flash('status', 'You have successfully stored description!');
+        }
+        return redirect()->route('trainings');
+    }
+
+    public function storeTraining(Request $request)
+    {
+        $added = Training::create($request->all());
+        if($added) {
+            $request->session()->flash('status', 'You have successfully stored training!');
         }
         return redirect()->route('trainings');
     }
@@ -61,13 +71,17 @@ class TrainingController extends Controller
      */
     public function index()
     {
-        $trainer = Trainer::where('user_id', Auth::id())->get();
+        $trainers = Trainer::where('user_id', Auth::id())->get();
 
-        return view('trainers.index', ['trainer' => $trainer]);
+        return view('trainers.index', ['trainers' => $trainers]);
     }
 
     public function addDescription()
     {
         return view('trainers.addDescription');
+    }
+    public function addTraining()
+    {
+        return view('trainers.addTraining');
     }
 }

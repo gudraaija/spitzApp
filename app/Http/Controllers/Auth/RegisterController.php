@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Trainer;
+use App\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -64,12 +66,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $userCreated = User::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'email' => $data['email'],
             'role' => $data['role'],
             'password' => bcrypt($data['password']),
+
         ]);
+        $last_id = \DB::table('users')->max('id');  
+
+        if ($data['role'] == 'Trainer') {
+            $trainer = new Trainer;
+            $trainer->name = $data['name'];
+            $trainer->description = ' ';
+            $trainer->training_id = -1;
+            $trainer->user_id = $last_id;
+            $trainer->save();
+        }
+
+        return $userCreated;
     }
 }

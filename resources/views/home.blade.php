@@ -22,7 +22,7 @@
 
                     @if (Auth::user()->role == 'Trainer')
                         <div class="">
-                            <a href="{{ route('trainings') }}">My trainings</a>
+                            <a href="{{ route('trainings') }}">My profile</a>
                         </div>
                     @endif
 
