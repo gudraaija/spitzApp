@@ -18,9 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('Pet', 'PetController');
+Route::resource('Training', 'TrainingController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/pets', 'PetController@index')->name('pets');
 Route::get('/pets/add', 'PetController@add')->name('addpet');
+Route::get('/about', 'HomeController@about')->name('about');
 
+Route::get('/trainings/addDescription', 'TrainingController@addDescription')->name('addDescription');
+Route::get('/trainings', 'TrainingController@index')->name('trainings');
 //Route::post('/pets/register', 'PetController@create')->name('registerPet');

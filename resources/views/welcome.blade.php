@@ -9,60 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <link href="/css/common.css" rel="stylesheet">
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -84,9 +31,24 @@
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Public trainings</a>
-                    <a href="https://laracasts.com">About</a>
+                    <a href="#about">About</a>
                 </div>
             </div>
         </div>
+
+          <!-- Page Content -->
+        <section align="center" id="about">
+          <div class="container">
+            <h1> -- About SpitzApp -- </h1>
+            <p>Spitz breeds, also known as northern breeds, have a rugged charm. The group is diverse and includes breeds from Scandinavia; Finnish spitz, Norwegian spitz, Asia, shar pei, Akita and chow chow plus Siberia and America; husky and Alaskan malamute respectively. To effectively train your spitz dog, understanding his personality and motivations is key.</p>
+          </div>
+        </section>
+        
+        <footer>
+          <div class="container">
+            <p align="center">Aijas Čaures Eksāmena darbs Tīmekļu tehnoloģijās II </p>
+          </div>
+          <!-- /.container -->
+        </footer>
     </body>
 </html>

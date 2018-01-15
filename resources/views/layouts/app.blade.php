@@ -73,6 +73,13 @@
 
         @yield('content')
     </div>
+    <!-- Footer -->
+    <footer>
+          <div class="container">
+            <p align="center">Aijas Čaures Eksāmena darbs Tīmekļu tehnoloģijās II </p>
+          </div>
+          <!-- /.container -->
+    </footer>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
