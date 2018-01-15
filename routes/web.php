@@ -27,7 +27,8 @@ Route::get('/pets', 'PetController@index')->name('pets');
 Route::get('/pets/add', 'PetController@add')->name('addpet');
 Route::get('/about', 'HomeController@about')->name('about');
 
-Route::get('/trainings/addDescription', 'TrainingController@addDescription')->name('addDescription');
+Route::get('/trainer/{any?}/editDescription', ['uses' => 'TrainingController@editDescription', 'as' => 'editDescription']);
+Route::post('/trainer/updateDescription', ['uses' => 'TrainingController@updateDescription', 'as' => 'updateDescription']);
+
 Route::get('/trainings/addTraining', 'TrainingController@addTraining')->name('addTraining');
 Route::get('/trainings', 'TrainingController@index')->name('trainings');
-//Route::post('/pets/register', 'PetController@create')->name('registerPet');

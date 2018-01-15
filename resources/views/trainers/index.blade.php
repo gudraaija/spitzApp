@@ -15,17 +15,17 @@
                     @endif
                     <div>
                         <h4>My description:</h4>
+                        <ul><p>{{ $trainer->description }}</p></ul>
+                        <ul><a href="{{ route('editDescription', $trainer->id) }}">Edit my description</a></ul>
 
-                        @foreach ($trainers as $trainer)
-                        @if ($trainer->description == ' ')
-                        <ul><a href="{{ route('addDescription') }}">Add a description to my profile</a></ul>
-                        @else 
-                        <ul>{{$trainer->description}}</ul>
-                        <ul><a href="{{ route('addDescription') }}">Edit my description</a></ul>
-                        @endif
-                        @endforeach
                         <h4>My trainings:</h4>
                         <ul><a href="{{ route('addTraining') }}">Add a training to my profile</a></ul>
+
+                        @foreach ($trainings as $training)
+                        <h5>{{ $training->name }} </h5>
+                        <button type="button" class="btn btn-outline-dark">Edit training info</button>
+                        <button type="button" class="btn btn-outline-dark">Remove from my profile</button>
+                        @endforeach
                     </div>
 
                 </div>

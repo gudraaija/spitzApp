@@ -5,20 +5,21 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Add description</div>
-
+                <div class="panel-heading">Edit description</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('Training.store') }}">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <form class="form-horizontal" method="POST" action="{{ route('updateDescription') }}">
                         {{ csrf_field() }}
-                        <input id="name" type="hidden" name="name" value="{{Auth::user()->name}}">
-                        <input id="user_id" type="hidden" name="user_id" value="{{Auth::id()}}">
-                        <input id="training_id" type="hidden" name="training_id" value="-1">
-
+                        <input id="trainer_id" type="hidden" name="trainer_id" value="{{ $trainer->id }}">
                         <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                             <label for="description" class="col-md-4 control-label">Description</label>
 
                             <div class="col-md-6">
-                                <input id="description" type="description" class="form-control" name="description" value="{{ old('description') }}" required>
+                                <input id="description" type="description" class="form-control" name="description" value="{{ $trainer->description }}" required>
 
                                 @if ($errors->has('description'))
                                     <span class="help-block">
@@ -31,7 +32,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Add
+                                    Edit
                                 </button>
                             </div>
                         </div>

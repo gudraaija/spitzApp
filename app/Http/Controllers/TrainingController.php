@@ -71,9 +71,9 @@ class TrainingController extends Controller
      */
     public function index()
     {
-        $trainers = Trainer::where('user_id', Auth::id())->get();
-
-        return view('trainers.index', ['trainers' => $trainers]);
+        $trainer = Trainer::where('user_id', Auth::id())->first();
+        $trainings = Training::where('trainer_id', Auth::id())->get();
+        return view('trainers.index', ['trainer' => $trainer, 'trainings' => $trainings]);
     }
 
     public function addDescription()
@@ -84,4 +84,20 @@ class TrainingController extends Controller
     {
         return view('trainers.addTraining');
     }
+
+    public function editDescription($id)
+    {
+        $trainer = Trainer::find($id)->first();
+        return view('trainers.editDescription', ['trainer' => $trainer]);
+    }
+    public function updateDescription(Request $request)
+    {
+        $trainer = Trainer::find($request->trainer_id);
+        $trainer->description = $request->description;
+
+        if($trainer->save()) {
+            $request->session()->flash('status', 'You have successfully updated description!');
+        }        
+        return view('trainers.editDescription', ['trainer' => $trainer]);
+    }    
 }
