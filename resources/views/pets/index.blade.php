@@ -22,7 +22,7 @@
                         <h5>{{ $pet->name }} </h5>
                         <button type="button" class="btn btn-outline-dark">Edit pets profile</button>
                         <button type="button" class="btn btn-outline-dark">Remove from my profile</button>
-                        <button type="button" class="btn btn-outline-dark">Assign to training</button>
+                        <a href="{{ route('addPetToTraining', $pet->id) }}" class="btn btn-default">Assign to training</a>
                     @endforeach
 
                 </div>

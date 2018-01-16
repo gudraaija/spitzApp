@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pet;
+use App\Training;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -70,4 +71,22 @@ class PetController extends Controller
     {
         return view('pets.add');
     }
+    public function addPetToTraining($id)
+    {
+        $pet = Pet::find($id)->first();
+        $trainings = Training::all();
+        return view('pets.addPetToTraining', ['pet' => $pet, 'trainings' => $trainings]);
+    }
+    public function savePetToTraining(Request $request)
+    {
+        $pet = Pet::find($request->pet_id);
+        $pet->training_id = $request->training_id;
+
+        if($pet->save()) {
+            $request->session()->flash('status', 'You have successfully assigned your pet!');
+        }
+        return redirect()->route('pets');
+    }
+
+
 }
